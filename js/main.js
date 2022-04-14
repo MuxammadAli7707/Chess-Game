@@ -142,7 +142,7 @@ king.addEventListener("click",()=>{
 
 
 const elAnime = document.getElementById("anime");
-let a = 0;
+let a = 1;
 elAnime.addEventListener('click', () => {
   elChess.classList.toggle('animation');
   if (a == 1) {
