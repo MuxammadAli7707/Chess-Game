@@ -67,7 +67,7 @@ body {
 }
 .chess__main {
   transform-style: preserve-3d;
-  transform: perspective(1000px);
+  transform: perspective(1500px);
 }
 .chess__box {
   display: flex;
