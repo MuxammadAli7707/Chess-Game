@@ -17,7 +17,7 @@ console.log(mass);
 
 mass.forEach((element, i)=>{
     let box = document.createElement('button');
-    box.className = `square x_ ${element.x} y_ ${element.y}`;
+    box.className = `square x ${element.x} y ${element.y}`;
     box.id = i;
     elChess.appendChild(box);
 })
@@ -103,19 +103,18 @@ for ( i = 0; i < btns.length; i++) {
 }
 
 
-
-let king = document.getElementById("king");
-king.addEventListener("click",()=>{
-  king.classList.add("active");
+let castle = document.getElementById("castle");
+castle.addEventListener("click",()=>{
+  castle.classList.add("active");
     boxs.forEach((item) => {
         mass.forEach((el, idx) => {
             item.addEventListener('mouseover', () => {
                 if (item.id == idx) {
                     boxs.forEach((elem, i) => {
-                        if (elem.className.includes(`y_${el.y}`)) {
+                        if (elem.className.includes(`x ${el.x}`)) {
                             elem.classList.add('greening')
                         }
-                        if (elem.className.includes(`x_${el.x}`)) {
+                        if (elem.className.includes(`y ${el.y}`)) {
                             elem.classList.add('greening')
                         }
                     })
@@ -126,10 +125,10 @@ king.addEventListener("click",()=>{
             item.addEventListener("mouseout", () => {
                 if (item.id == idx) {
                     boxs.forEach((elem, i) => {
-                        if (elem.className.includes(`y_${el.y}`)) {
+                        if (elem.className.includes(`x ${el.x}`)) {
                             elem.classList.remove('greening')
                         }
-                        if (elem.className.includes(`x_${el.x}`)) {
+                        if (elem.className.includes(`y ${el.y}`)) {
                             elem.classList.remove('greening')
                         }
                     })
