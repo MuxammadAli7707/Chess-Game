@@ -107,3 +107,13 @@ body {
 .greening {
   box-shadow: 0 0 30px 13px #05e40d inset;
 }
+
+.queen-img {
+  background-image: url(../imgs/Queen.svg);
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+  z-index: 1000;
+}

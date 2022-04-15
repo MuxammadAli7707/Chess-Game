@@ -16,8 +16,8 @@ for(let i = 1; i <= 8; i++) {
 console.log(mass);
 
 mass.forEach((element, i)=>{
-    let box = document.createElement('button');
-    box.className = `square x ${element.x} y ${element.y}`;
+    let box = document.createElement('div');
+    box.className = `square x-${element.x} y-${element.y}`;
     box.id = i;
     elChess.appendChild(box);
 })
@@ -58,40 +58,6 @@ boxs.forEach((item)=> {
 });
 
 
-// const castle = document.getElementById("castle");
-// castle.addEventListener("click", ()=> {
-//   boxs.forEach((item) => {
-//     mass.forEach((el, idx) => {
-//       item.addEventListener("mouseover", ()=> {
-//         if(item.id == idx){
-//           boxs.forEach((elem, id) => {
-//             if(elem.className.includes(`x_${el.x}`)){
-//               elem.classList.add("greening");
-//             }
-//             if(elem.className.includes(`y_${el.y}`)){
-//               elem.classList.add("greening");
-//             }
-//           });
-//         }
-//       });
-
-        // element.addEventListener("mouseout", ()=> {
-        //   if(element.id == i){
-        //     boxs.forEach((el, id) => {
-        //       if(el.className.includes(`x_${elm.x}`)){
-        //         el.classList.remove("greening");
-        //       }
-        //       if(el.className.includes(`y_${elm.y}`)){
-        //         el.classList.remove("greening");
-        //       }
-        //     })
-        //   }
-        // })
-      
-//     })
-//   })
-// })
-
 let header = document.getElementById("list-btn");
 let btns = header.querySelectorAll(".chess__btn");
 for ( i = 0; i < btns.length; i++) {
@@ -102,6 +68,47 @@ for ( i = 0; i < btns.length; i++) {
   });
 }
 
+let queen = document.getElementById("queen")
+queen.addEventListener('click', () => {
+    boxs.forEach((item) => {
+        mass.forEach((elem, idx) => {
+            item.addEventListener('mouseover', () => {
+                if (item.id == idx) {
+                    boxs.forEach((el, i) => {
+                        el.classList.remove('greening')
+                        if (el.className.includes(`y-${elem.y}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`x-${elem.x}`)) {
+                            el.classList.add('greening')
+                        }
+                        for (let i = 0; i < 8; i++) {
+                            if (el.className.includes(`y-${elem.y + i}`) && el.className.includes(`x-${elem.x + i}`)) {
+                                el.classList.add('greening')
+                            }
+                            if (el.className.includes(`y-${elem.y - i}`) && el.className.includes(`x-${elem.x + i}`)) {
+                                el.classList.add('greening')
+                            }
+                            if (el.className.includes(`y-${elem.y - i}`) && el.className.includes(`x-${elem.x - i}`)) {
+                                el.classList.add('greening')
+                            }
+                            if (el.className.includes(`y-${elem.y + i}`) && el.className.includes(`x-${elem.x - i}`)) {
+                                el.classList.add('greening')
+                            }
+                        }
+                    })
+                }
+            })
+            item.addEventListener("mouseout", () => {
+                if (item.id == idx) {
+                    boxs.forEach((el, i) => {
+                        el.classList.remove('greening')
+                    })
+                }
+            })
+        })
+    })
+})
 
 let castle = document.getElementById("castle");
 castle.addEventListener("click",()=>{
@@ -111,10 +118,11 @@ castle.addEventListener("click",()=>{
             item.addEventListener('mouseover', () => {
                 if (item.id == idx) {
                     boxs.forEach((elem, i) => {
-                        if (elem.className.includes(`x ${el.x}`)) {
+                      elem.classList.remove('greening')
+                        if (elem.className.includes(`y-${el.y}`)) {
                             elem.classList.add('greening')
                         }
-                        if (elem.className.includes(`y ${el.y}`)) {
+                        if (elem.className.includes(`x-${el.x}`)) {
                             elem.classList.add('greening')
                         }
                     })
@@ -125,10 +133,10 @@ castle.addEventListener("click",()=>{
             item.addEventListener("mouseout", () => {
                 if (item.id == idx) {
                     boxs.forEach((elem, i) => {
-                        if (elem.className.includes(`x ${el.x}`)) {
+                        if (elem.className.includes(`y ${el.y}`)) {
                             elem.classList.remove('greening')
                         }
-                        if (elem.className.includes(`y ${el.y}`)) {
+                        if (elem.className.includes(`x-${el.x}`)) {
                             elem.classList.remove('greening')
                         }
                     })
@@ -139,6 +147,176 @@ castle.addEventListener("click",()=>{
     })
 })
 
+let king = document.getElementById("king");
+king.addEventListener('click', () => {
+  king.classList.add("active");
+    boxs.forEach((item) => {
+        mass.forEach((elem, idx) => {
+            item.addEventListener('mouseover', () => {
+                if (item.id == idx) {
+                    boxs.forEach((el, i) => {
+                        el.classList.remove('greening');
+                        if (el.className.includes(`y-${elem.y + 1}`) && el.className.includes(`x-${elem.x - 1}`)) {
+                            el.classList.add('greening')
+                        } 
+                        if (el.className.includes(`y-${elem.y - 1}`) && el.className.includes(`x-${elem.x - 1}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y}`) && el.className.includes(`x-${elem.x - 1}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y - 1}`) && el.className.includes(`x-${elem.x}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y + 1}`) && el.className.includes(`x-${elem.x}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y - 1}`) && el.className.includes(`x-${elem.x + 1}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y}`) && el.className.includes(`x-${elem.x + 1}`)) {
+                            el.classList.add('greening')
+
+                        } if (el.className.includes(`y-${elem.y + 1}`) && el.className.includes(`x-${elem.x + 1}`)) {
+                            el.classList.add('greening')
+                        }
+                    })
+
+                }
+            })
+            item.addEventListener("mouseout", () => {
+                if (item.id == idx) {
+                    boxs.forEach((el, i) => {
+                        el.classList.remove('greening')
+
+                      })
+                }
+            })
+        })
+    })
+})
+
+let knight = document.getElementById("knight")
+knight.addEventListener('click', () => {
+  knight.classList.add("active");
+    boxs.forEach((item) => {
+        mass.forEach((elem, idx) => {
+            item.addEventListener('mouseover', () => {
+                if (item.id == idx) {
+                    boxs.forEach((el, i) => {
+                        el.classList.remove('greening')
+                        if (el.className.includes(`y-${elem.y + 1}`) && el.className.includes(`x-${elem.x + 2}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y + 2}`) && el.className.includes(`x-${elem.x + 1}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y + 2}`) && el.className.includes(`x-${elem.x - 1}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y + 1}`) && el.className.includes(`x-${elem.x - 2}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y - 1}`) && el.className.includes(`x-${elem.x + 2}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y - 2}`) && el.className.includes(`x-${elem.x + 1}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y - 2}`) && el.className.includes(`x-${elem.x - 1}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y - 1}`) && el.className.includes(`x-${elem.x - 2}`)) {
+                            el.classList.add('greening')
+                        }
+                    })
+                }
+            })
+            item.addEventListener("mouseout", () => {
+                if (item.id == i) {
+                    boxs.forEach((el, id) => {
+                        el.classList.remove("greening")
+                    })
+                }
+            })
+        })
+    })
+})
+let bishop = document.getElementById('bishop')
+bishop.addEventListener('click', () => {
+  bishop.classList.add("active");
+    boxs.forEach((item) => {
+        mass.forEach((elem, i) => {
+            item.addEventListener('mouseover', () => {
+                if (item.id == i) {
+                    boxs.forEach((el, id) => {
+                        el.classList.remove('greening')
+                        for (let i = 0; i < 8; i++) {
+                            if (el.className.includes(`y-${elem.y + i}`) && el.className.includes(`x-${elem.x + i}`)) {
+                                el.classList.add('greening')
+                            }
+                            if (el.className.includes(`y-${elem.y - i}`) && el.className.includes(`x-${elem.x + i}`)) {
+                                el.classList.add('greening')
+                            }
+                            if (el.className.includes(`y-${elem.y - i}`) && el.className.includes(`x-${elem.x - i}`)) {
+                                el.classList.add('greening')
+                            }
+                            if (el.className.includes(`y-${elem.y + i}`) && el.className.includes(`x-${elem.x - i}`)) {
+                                el.classList.add('greening')
+                            }
+                        }
+                    })
+                }
+            })
+            item.addEventListener("mouseout", () => {
+                if (item.id == idx) {
+                    boxs.forEach((el, i) => {
+                        el.classList.remove('greening')
+                    })
+                }
+            })
+        })
+    })
+})
+
+let pawn = document.getElementById("pawn");
+pawn.addEventListener("click", ()=> {
+  pawn.classList.add("active");
+  boxs.forEach((item) => {
+    mass.forEach((elem, idx) => {
+        item.addEventListener('mouseover', () => {
+            if (item.className.includes(`x-2`)) {
+                if (item.id == idx) {
+                    boxs.forEach((el) => {
+                        el.classList.remove('greening')
+                        if (el.className.includes(`y-${elem.y}`) && el.className.includes(`x-${elem.x - 1}`)) {
+                            el.classList.add('greening')
+                        }
+                        if (el.className.includes(`y-${elem.y}`) && el.className.includes(`x-${elem.x - 2}`)) {
+                            el.classList.add('greening')
+                        }
+                    })
+                }
+            } else if (item.id == idx) {
+                boxs.forEach((el) => {
+                    if (el.className.includes(`y-${elem.y}`) && el.className.includes(`x-${elem.x - 1}`)) {
+                        el.classList.add('greening')
+                    } else {
+                        el.classList.remove('greening')
+                    }
+                })
+            }
+        })
+        item.addEventListener("mouseout", () => {
+            if (item.id == idx) {
+                boxs.forEach((el, i) => {
+                    el.classList.remove('greening')
+                })
+            }
+        })
+    })
+  })
+})
 
 const elAnime = document.getElementById("anime");
 let a = 1;
